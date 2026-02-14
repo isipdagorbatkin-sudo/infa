@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PracticalWork1</title>
+</head>
+<body>
+    <script>
+        const users = [
+  { id: 1, name: "Anna", age: 22, city: "Moscow", isActive: true },
+  { id: 2, name: "Oleg", age: 17, city: "Kazan", isActive: false },
+  { id: 3, name: "Ivan", age: 30, city: "Moscow", isActive: true },
+  { id: 4, name: "Maria", age: 25, city: "Sochi", isActive: false }
+];
+
+// Задание 1
+function getActiveUsers(usersArray) {
+  return usersArray.filter(user => user.isActive === true);
+}
+
+// Задание 2
+const getUserNames = (usersArray) => {
+  return usersArray.map(user => user.name);
+};
+
+// Задание 3
+function findUserById(usersArray, id) {
+  const user = usersArray.find(user => user.id === id);
+  return user !== undefined ? user : null;
+}
+
+// Задание 4
+function getUsersStatistics(usersArray) {
+  const active = usersArray.filter(user => user.isActive === true).length;
+  const inactive = usersArray.filter(user => user.isActive === false).length;
+  
+  return {
+    total: usersArray.length,
+    active: active,
+    inactive: inactive
+  };
+}
+
+// Задание 5
+function getAverageAge(usersArray) {
+  const sumAge = usersArray.reduce((total, user) => total + user.age, 0);
+  return sumAge / usersArray.length;
+}
+
+// Задание 6
+function groupUsersByCity(usersArray) {
+  const result = {};
+  
+  usersArray.forEach(user => {
+    if (!result[user.city]) {
+      result[user.city] = [];
+    }
+    result[user.city].push(user);
+  });
+  
+  return result;
+}
+
+console.log('Активные пользователи:', getActiveUsers(users));
+console.log('Имена пользователей:', getUserNames(users));
+console.log('Пользователь с id=3:', findUserById(users, 3));
+console.log('Пользователь с id=99:', findUserById(users, 99));
+console.log('Статистика:', getUsersStatistics(users));
+console.log('Средний возраст:', getAverageAge(users));
+console.log('Группировка по городам:', groupUsersByCity(users));
+    </script>
+</body>
+</html>
